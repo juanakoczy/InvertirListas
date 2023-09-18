@@ -48,6 +48,7 @@ void insertar (Lista * lista, Nodo * nodo) {
               aux = aux->sig;//recorro la lista
           }
           aux->sig = nodo;//persisto el nodo en el ultimo elemento
+          nodo->ant = aux;//actualizo la posicion del actual apuntado por el nodo
       }
 }
 
@@ -72,13 +73,11 @@ Lista * invertir (Lista *lista) {
     }
 
     aux = actual;
-    listaInvertida->cabecera = aux; // Actualizar la cabecera de la lista invertida
-    Nodo *nuevoNodo = newNodo(actual->dato); // Crear un nuevo nodo con el dato de actual
-    insertar(listaInvertida, nuevoNodo); // Insertar el nuevo nodo al final de la nueva lista
 
     while (actual->ant != NULL) {
         actual = actual->ant;
-        nuevoNodo = newNodo(actual->dato);
+        listaInvertida->cabecera = aux; // Actualizar la cabecera de la lista invertida
+        Nodo * nuevoNodo = newNodo(actual->dato);
         insertar(listaInvertida, nuevoNodo);
     }
 
